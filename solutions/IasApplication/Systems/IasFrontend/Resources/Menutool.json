@@ -1,0 +1,12 @@
+[{
+  
+   "icon": "remove.svg",
+    "text": "Logout",
+    "children": [{
+    		 "icon": "remove.svg",
+      "text": "Logxccvout",
+    	 "uiComponentName": "CmpHome"
+    }],
+   
+   
+  }]

@@ -1,0 +1,30 @@
+{
+  "eventsAndFunctions": [],
+  "model": [],
+  "root": {
+    "children": [
+      {
+        "align": "center",
+        "attribute": {
+          "bold": true,
+          "color": "primary",
+          "name": "label1",
+          "text": "Login Successfully"
+        },
+        "bold": true,
+        "color": "primary",
+        "cssClass": "blz-padding-top-large",
+        "name": "label1",
+        "size": "x-large",
+        "text": "Login Successfully",
+        "widget": "Label"
+      }
+    ],
+    "cssClass": "blz-area-default",
+    "layout": "container"
+  },
+  "routing": {
+    "path": "/success"
+  },
+  "unused": []
+}

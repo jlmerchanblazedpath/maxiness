@@ -1,0 +1,38 @@
+{
+  "autoincrementalPrimaryKey": true,
+  "columns": [
+    {
+      "alias": "id",
+      "name": "id",
+      "primaryKey": true,
+      "type": "integer"
+    },
+    {
+      "alias": "ustatus",
+      "name": "u_status",
+      "type": "string"
+    },
+    {
+      "alias": "uemailid",
+      "name": "u_emailid",
+      "type": "string"
+    },
+    {
+      "alias": "uunm",
+      "name": "u_unm",
+      "type": "string"
+    },
+    {
+      "alias": "upass",
+      "name": "u_pass",
+      "type": "string"
+    }
+  ],
+  "foreignKeys": [],
+  "indexes": [],
+  "isView": false,
+  "primaryKeyName": "",
+  "sequenceName": "TblLogin_Sq",
+  "tableName": "TblLogin",
+  "uniqueKeys": []
+}

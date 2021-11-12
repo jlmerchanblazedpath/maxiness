@@ -1,0 +1,31 @@
+{
+  "algorithm": {
+    "parameters": [
+      {
+        "name": "chknumber",
+        "type": "User"
+      }
+    ],
+    "statements": [
+      {
+        "command": "Return",
+        "expression": "RdsExists(Ias.Users,mobileno == ^chknumber.mobileno)"
+      }
+    ],
+    "typeReturn": "any",
+    "variables": []
+  },
+  "routing": {
+    "method": "GET",
+    "parameters": [
+      {
+        "bind": "chknumber.mobileno",
+        "in": "Query",
+        "name": "mobileno",
+        "remarks": "chk number"
+      }
+    ],
+    "path": "/api/Users",
+    "remarks": "exist number"
+  }
+}

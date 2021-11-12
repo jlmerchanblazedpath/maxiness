@@ -1,0 +1,45 @@
+{
+  "autoincrementalPrimaryKey": true,
+  "columns": [
+    {
+      "alias": "id",
+      "name": "id",
+      "primaryKey": true,
+      "type": "integer"
+    },
+    {
+      "alias": "name",
+      "allowNull": false,
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "alias": "email",
+      "name": "email",
+      "type": "string"
+    },
+    {
+      "alias": "mobileno",
+      "allowNull": true,
+      "name": "mobileno",
+      "type": "string"
+    },
+    {
+      "alias": "status",
+      "name": "status",
+      "type": "string"
+    },
+    {
+      "alias": "batch",
+      "name": "batch",
+      "type": "string"
+    }
+  ],
+  "foreignKeys": [],
+  "indexes": [],
+  "isView": true,
+  "primaryKeyName": "userid",
+  "sequenceName": "",
+  "tableName": "Users",
+  "uniqueKeys": []
+}

@@ -1,0 +1,42 @@
+{
+  "systems": [
+    {
+      "name": "Admin",
+      "type": "WebFrontend",
+      "x": 377,
+      "y": 70
+    },
+    {
+      "name": "Ias",
+      "type": "RelationalDatabase",
+      "x": 567,
+      "y": 300
+    },
+    {
+      "name": "IasFrontend",
+      "type": "MobileApp",
+      "x": 115,
+      "y": 221
+    },
+    {
+      "name": "Myservices",
+      "type": "Microservice",
+      "x": 348,
+      "y": 249
+    }
+  ],
+  "references": [
+    {
+      "fromSystemName": "Admin",
+      "toSystemName": "Myservices"
+    },
+    {
+      "fromSystemName": "IasFrontend",
+      "toSystemName": "Myservices"
+    },
+    {
+      "fromSystemName": "Myservices",
+      "toSystemName": "Ias"
+    }
+  ]
+}

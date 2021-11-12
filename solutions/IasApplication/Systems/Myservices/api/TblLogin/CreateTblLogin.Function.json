@@ -1,0 +1,32 @@
+{
+  "algorithm": {
+    "parameters": [
+      {
+        "name": "tblLogin",
+        "type": "TblLogin"
+      }
+    ],
+    "statements": [
+      {
+        "command": "Return",
+        "expression": "RdsInsert(Ias.TblLogin, ^tblLogin)"
+      }
+    ],
+    "typeReturn": "integer",
+    "variables": []
+  },
+  "routing": {
+    "method": "POST",
+    "parameters": [
+      {
+        "bind": "tblLogin",
+        "in": "Body",
+        "name": "body",
+        "remarks": "TblLogin to be created."
+      }
+    ],
+    "path": "/tbl-login",
+    "remarks": "Allows to create a new TblLogin.",
+    "responses": []
+  }
+}

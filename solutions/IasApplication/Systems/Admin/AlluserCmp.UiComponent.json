@@ -1,0 +1,358 @@
+{
+  "eventsAndFunctions": [
+    {
+      "algorithm": {
+        "parameters": [],
+        "statements": [
+          {
+            "command": "Navigate",
+            "expressionStartModel": "{}",
+            "uiComponentName": "UserRegistrationCmp"
+          }
+        ],
+        "typeReturn": "any",
+        "variables": []
+      },
+      "name": "adduser_click"
+    },
+    {
+      "algorithm": {
+        "parameters": [
+          {
+            "name": "args",
+            "type": "ArgsLoadRecords"
+          }
+        ],
+        "statements": [
+          {
+            "command": "Return",
+            "expression": "Myservices.ListUsers(^args1)"
+          }
+        ],
+        "typeReturn": "list(any)",
+        "variables": [
+          {
+            "name": "args1",
+            "type": "Myservices.ArgsListUsers"
+          }
+        ]
+      },
+      "name": "grid1_loadRecords"
+    },
+    {
+      "algorithm": {
+        "parameters": [],
+        "statements": [
+          {
+            "command": "Refresh",
+            "widgetName": "grid1"
+          }
+        ],
+        "typeReturn": "any",
+        "variables": []
+      },
+      "name": "grid1_init"
+    },
+    {
+      "algorithm": {
+        "parameters": [
+          {
+            "name": "recordRef",
+            "type": "string"
+          },
+          {
+            "name": "arg",
+            "type": "string"
+          }
+        ],
+        "statements": [
+          {
+            "command": "ReadRecord",
+            "expressionRecordRef": "^recordRef",
+            "variableName": "myinfo",
+            "widgetName": "grid1"
+          },
+          {
+            "command": "Set",
+            "expression": "Myservices.Status({uemailid:^myinfo.email,ustatus:\"Pending\"})",
+            "variableName": "status"
+          },
+          {
+            "children": [
+              {
+                "command": "AlertMessage",
+                "expressionMessage": "\"Status Disapproved Sucessfully\"",
+                "expressionTitle": "\"apporoved\"",
+                "severity": "warning"
+              }
+            ],
+            "command": "If",
+            "expression": "status"
+          }
+        ],
+        "typeReturn": "any",
+        "variables": [
+          {
+            "name": "myinfo",
+            "type": "Myservices.User"
+          },
+          {
+            "name": "status",
+            "type": "any"
+          }
+        ]
+      },
+      "name": "grid1_handlerRecordAction_Status"
+    },
+    {
+      "algorithm": {
+        "parameters": [
+          {
+            "name": "recordRef",
+            "type": "string"
+          },
+          {
+            "name": "arg",
+            "type": "string"
+          }
+        ],
+        "statements": [
+          {
+            "command": "ReadRecord",
+            "expressionRecordRef": "^recordRef",
+            "variableName": "myinfo",
+            "widgetName": "grid1"
+          },
+          {
+            "command": "Set",
+            "expression": "Myservices.Status({uemailid:^myinfo.email,ustatus:\"active\"})",
+            "variableName": "status"
+          },
+          {
+            "children": [
+              {
+                "command": "AlertMessage",
+                "expressionMessage": "\"Status Approved Sucessfully\"",
+                "expressionTitle": "\"Approved\"",
+                "severity": "warning"
+              }
+            ],
+            "command": "If",
+            "expression": "status"
+          }
+        ],
+        "typeReturn": "any",
+        "variables": [
+          {
+            "name": "myinfo",
+            "type": "Myservices.User"
+          },
+          {
+            "name": "status",
+            "type": "any"
+          }
+        ]
+      },
+      "name": "grid1_handlerRecordAction_Approved"
+    },
+    {
+      "algorithm": {
+        "parameters": [],
+        "statements": [
+          {
+            "command": "Navigate",
+            "expressionStartModel": "{}",
+            "uiComponentName": "Dashbord"
+          }
+        ],
+        "typeReturn": "any",
+        "variables": []
+      },
+      "name": "goback_click"
+    },
+    {
+      "algorithm": {
+        "parameters": [
+          {
+            "name": "recordData",
+            "type": "any"
+          }
+        ],
+        "statements": [],
+        "typeReturn": "boolean",
+        "variables": []
+      },
+      "name": "grid1_visibilityRecordAction_editUser"
+    },
+    {
+      "algorithm": {
+        "parameters": [
+          {
+            "name": "recordRef",
+            "type": "string"
+          },
+          {
+            "name": "arg",
+            "type": "string"
+          }
+        ],
+        "statements": [
+          {
+            "command": "ReadRecord",
+            "expressionRecordRef": "recordRef",
+            "variableName": "myinfo",
+            "widgetName": "grid1"
+          },
+          {
+            "buttons": "ok-cancel",
+            "command": "Open",
+            "expressionIcon": "\"edit.svg\"",
+            "expressionStartModel": "{}",
+            "expressionTitle": "\"edit user\"",
+            "mode": "right-drawer",
+            "size": "default",
+            "uiComponentName": "EdituserCmp"
+          },
+          {
+            "children": [
+              {
+                "command": "Set",
+                "expression": "openmodule.instance",
+                "variableName": "myinfo"
+              },
+              {
+                "command": "Execute",
+                "expression": "Myservices.UpdateUser(myinfo.id,myinfo)"
+              },
+              {
+                "command": "CloseCurrent"
+              },
+              {
+                "command": "Refresh",
+                "widgetName": "grid1"
+              }
+            ],
+            "command": "OnOk",
+            "variableNameOpenedModel": "openmodule"
+          }
+        ],
+        "typeReturn": "any",
+        "variables": [
+          {
+            "name": "openmodule",
+            "type": "any"
+          },
+          {
+            "name": "myinfo",
+            "type": "Myservices.User"
+          }
+        ]
+      },
+      "name": "grid1_handlerRecordAction_Edit"
+    }
+  ],
+  "model": [],
+  "root": {
+    "alignItems": "center",
+    "children": [
+      {
+        "align": "right",
+        "color": "primary",
+        "name": "adduser",
+        "text": "Add User",
+        "widget": "Button"
+      },
+      {
+        "actions": [],
+        "columns": [
+          {
+            "align": "left",
+            "bindText": "name",
+            "header": "Name",
+            "size": "1"
+          },
+          {
+            "align": "left",
+            "bindText": "email",
+            "header": "Email",
+            "size": "1"
+          },
+          {
+            "align": "left",
+            "bindText": "mobileno",
+            "header": "Mobileno",
+            "size": "1"
+          },
+          {
+            "align": "left",
+            "bindText": "status",
+            "header": "Status",
+            "size": "1"
+          },
+          {
+            "align": "left",
+            "bindText": "batch",
+            "header": "Batch",
+            "size": "1"
+          }
+        ],
+        "cssClass": "blz-border-top blz-border-right blz-border-left blz-border-bottom blz-border-radius",
+        "name": "grid1",
+        "recordActions": [
+          {
+            "icon": "remove.svg",
+            "key": "Status",
+            "text": "Pending"
+          },
+          {
+            "icon": "righ1.svg",
+            "key": "Approved",
+            "text": "Approved"
+          }
+        ],
+        "size": "7/12",
+        "typeName": "Myservices.User",
+        "widget": "Grid"
+      },
+      {
+        "align": "right",
+        "color": "primary",
+        "icon": "arrow-left.svg",
+        "name": "goback",
+        "text": "Go Back",
+        "widget": "Button"
+      }
+    ],
+    "cssClass": "blz-area-default",
+    "layout": "container"
+  },
+  "routing": {
+    "path": "/alluser"
+  },
+  "unused": [
+    {
+      "__internalName": "grid4",
+      "columns": [
+        {
+          "align": "left",
+          "bindText": "name",
+          "key": "Name"
+        },
+        {}
+      ],
+      "name": "grid4",
+      "typeName": "Myservices.User",
+      "widget": "Grid"
+    },
+    {
+      "__internalName": "htmlrenderer1",
+      "name": "htmlrenderer1",
+      "widget": "HtmlRenderer"
+    },
+    {
+      "__internalName": "htmlrenderer2",
+      "name": "htmlrenderer2",
+      "widget": "HtmlRenderer"
+    }
+  ]
+}

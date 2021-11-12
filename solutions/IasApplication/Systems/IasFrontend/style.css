@@ -1,0 +1,46 @@
+.custom{
+
+	text-align: center;
+	padding-right: 93px;
+  	border-radius: 17px;
+ 	padding-left:93px; 
+  
+  	color:white;
+	
+}
+
+
+.custom1{
+
+	text-align: center;
+	padding-right: 93px;
+  	border-radius: 17px;
+ 	padding-left:93px; 
+  margin-top: 29px;
+  	color:white;
+	
+}
+
+.icon{
+  height:500px;
+}
+
+.img{
+	
+margin-top: -89px;
+  margin-left:50px;
+  margin-right:154px
+}
+
+.textbox{
+ 
+ width:50%;
+ margin-top:20px;
+  box-sizing: border-box;
+  border: 1px solid #d8e0ed;
+  border-radius: 4px;
+  
+}
+.textbox:hover {
+   border: 1px solid #2a5fb5;
+}

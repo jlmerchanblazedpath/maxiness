@@ -1,0 +1,151 @@
+{
+  "eventsAndFunctions": [
+    {
+      "algorithm": {
+        "parameters": [],
+        "statements": [
+          {
+            "command": "Navigate",
+            "expressionStartModel": "{}",
+            "uiComponentName": "AlluserCmp"
+          }
+        ],
+        "typeReturn": "any",
+        "variables": []
+      },
+      "name": "alluser_click"
+    },
+    {
+      "algorithm": {
+        "parameters": [],
+        "statements": [
+          {
+            "command": "Navigate",
+            "expressionStartModel": "{}",
+            "uiComponentName": "CmpHome"
+          }
+        ],
+        "typeReturn": "any",
+        "variables": []
+      },
+      "name": "logout_click"
+    }
+  ],
+  "model": [],
+  "root": {
+    "alignItems": "center",
+    "children": [
+      {
+        "alignItems": "center",
+        "children": [
+          {
+            "align": "center",
+            "color": "default",
+            "cssClass": "blz-padding-top-large blz-padding-bottom-large",
+            "name": "label1",
+            "size": "x-large",
+            "text": "Welcome ",
+            "widget": "Label"
+          },
+          {
+            "children": [
+              {
+                "align": "center",
+                "clickable": true,
+                "color": "default",
+                "cssClass": "blz-padding-top-large blz-border-top blz-border-right blz-border-left blz-border-bottom blz-border-radius",
+                "icon": "dashbord.svg",
+                "name": "alluser",
+                "size": "xx-large",
+                "widget": "Icon"
+              },
+              {
+                "align": "center",
+                "color": "default",
+                "name": "label3",
+                "text": "Add Users",
+                "widget": "Label"
+              }
+            ],
+            "height": 200,
+            "layout": "container",
+            "size": "third"
+          },
+          {
+            "alignItems": "center",
+            "children": [
+              {
+                "align": "center",
+                "color": "default",
+                "cssClass": "blz-padding-top-large blz-border-top blz-border-right blz-border-left blz-border-bottom",
+                "icon": "menu.svg",
+                "name": "icon4",
+                "size": "xx-large",
+                "widget": "Icon"
+              },
+              {
+                "align": "center",
+                "color": "default",
+                "name": "label4",
+                "text": "Comming Soon",
+                "widget": "Label"
+              }
+            ],
+            "height": 200,
+            "layout": "container",
+            "size": "third"
+          }
+        ],
+        "cssClass": "blz-padding-top-large blz-padding-left-large",
+        "height": 300,
+        "layout": "container",
+        "size": "three-quarter"
+      },
+      {
+        "align": "right",
+        "color": "primary",
+        "cssClass": "blz-padding-left-large",
+        "name": "logout",
+        "text": "Log Out",
+        "widget": "Button"
+      }
+    ],
+    "cssClass": "blz-area-default",
+    "layout": "container"
+  },
+  "routing": {
+    "path": "/dashbord"
+  },
+  "unused": [
+    {
+      "__internalName": "icon1",
+      "name": "icon1",
+      "widget": "Icon"
+    },
+    {
+      "__internalName": "icon3",
+      "align": "left",
+      "attribute": {
+        "color": "default",
+        "icon": "menu.svg",
+        "name": "icon3",
+        "size": "xx-large"
+      },
+      "color": "default",
+      "cssClass": "blz-padding-left-large",
+      "dock": "previous",
+      "icon": "menu.svg",
+      "name": "icon3",
+      "size": "xx-large",
+      "widget": "Icon"
+    },
+    {
+      "__internalName": "label2",
+      "align": "center",
+      "color": "default",
+      "name": "label2",
+      "text": "Register User",
+      "widget": "Label"
+    }
+  ]
+}

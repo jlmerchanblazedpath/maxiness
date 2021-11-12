@@ -1,0 +1,38 @@
+{
+  "algorithm": {
+    "parameters": [
+      {
+        "name": "useremail",
+        "type": "TblLogin"
+      }
+    ],
+    "statements": [
+      {
+        "command": "ConsoleLog",
+        "expression": "useremail.uemailid"
+      },
+      {
+        "command": "Return",
+        "expression": "RdsUpdate(Ias.TblLogin, { ustatus:^useremail.ustatus }, uemailid == ^useremail.uemailid)"
+      }
+    ],
+    "typeReturn": "any",
+    "variables": []
+  },
+  "routing": {
+    "method": "PATCH",
+    "parameters": [
+      {
+        "bind": "useremail.uemailid",
+        "in": "Path",
+        "name": "uemailid"
+      },
+      {
+        "bind": "useremail.ustatus",
+        "in": "Query",
+        "name": "ustatus"
+      }
+    ],
+    "path": "/api/tbllogin/{uemailid}"
+  }
+}

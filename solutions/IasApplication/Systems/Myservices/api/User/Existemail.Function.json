@@ -1,0 +1,35 @@
+{
+  "algorithm": {
+    "parameters": [
+      {
+        "name": "users",
+        "type": "User"
+      }
+    ],
+    "statements": [
+      {
+        "command": "ConsoleLog",
+        "expression": "JsonStringify(^users)"
+      },
+      {
+        "command": "Return",
+        "expression": "RdsExists(Ias.Users,email==^users.email)"
+      }
+    ],
+    "typeReturn": "any",
+    "variables": []
+  },
+  "routing": {
+    "method": "GET",
+    "parameters": [
+      {
+        "bind": "users.email",
+        "in": "Query",
+        "name": "email",
+        "remarks": "chk exist user"
+      }
+    ],
+    "path": "/api/User",
+    "remarks": "chk exist user"
+  }
+}

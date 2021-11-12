@@ -1,0 +1,427 @@
+{
+  "eventsAndFunctions": [
+    {
+      "algorithm": {
+        "parameters": [],
+        "statements": [
+          {
+            "command": "GetValue",
+            "variableName": "name",
+            "widgetName": "name"
+          },
+          {
+            "command": "GetValue",
+            "variableName": "email",
+            "widgetName": "email"
+          },
+          {
+            "command": "GetValue",
+            "variableName": "mobileno",
+            "widgetName": "mobileno"
+          },
+          {
+            "command": "GetValue",
+            "variableName": "status",
+            "widgetName": "combobox1"
+          },
+          {
+            "command": "GetValue",
+            "variableName": "batch",
+            "widgetName": "batch"
+          },
+          {
+            "command": "GetValue",
+            "variableName": "password",
+            "widgetName": "password"
+          },
+          {
+            "command": "GetValue",
+            "variableName": "cpass",
+            "widgetName": "cpassword"
+          },
+          {
+            "command": "Set",
+            "expression": "RegexTest(email, \"^([a-zA-Z0-9_\\\\-\\\\.]+)@([a-zA-Z0-9_\\\\-\\\\.]+)\\\\.([a-zA-Z]{2,5})$\")",
+            "variableName": "chkemail"
+          },
+          {
+            "command": "Set",
+            "expression": "Myservices.EncryptPassword({upass:^password})",
+            "variableName": "encryptPassword"
+          },
+          {
+            "children": [
+              {
+                "command": "Return",
+                "expression": "null"
+              }
+            ],
+            "command": "If",
+            "expression": "IsNull(^name) || IsNull(^mobileno) || IsNull(^batch) || IsNull(^password)"
+          },
+          {
+            "children": [
+              {
+                "command": "AlertMessage",
+                "expressionMessage": "\"Please Enter Valid Mobile No\"",
+                "expressionTitle": "\"Invalid Number\"",
+                "severity": "warning"
+              },
+              {
+                "command": "Return",
+                "expression": "null"
+              }
+            ],
+            "command": "If",
+            "expression": "Length(mobileno) > 11"
+          },
+          {
+            "children": [
+              {
+                "command": "Return",
+                "expression": "null"
+              }
+            ],
+            "command": "If",
+            "expression": "IsNull(email)"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "command": "AlertMessage",
+                    "expressionMessage": "\"please enter valid email\"",
+                    "expressionTitle": "\"Invalid Email\"",
+                    "severity": "warning"
+                  },
+                  {
+                    "command": "Return",
+                    "expression": "null"
+                  }
+                ],
+                "command": "If",
+                "expression": "chkemail == false"
+              }
+            ],
+            "command": "Else"
+          },
+          {
+            "children": [
+              {
+                "command": "AlertMessage",
+                "expressionMessage": "\"Password and Confirm password not match\"",
+                "expressionTitle": "\"Incorrect Password\"",
+                "severity": "warning"
+              },
+              {
+                "command": "Return",
+                "expression": "null"
+              }
+            ],
+            "command": "If",
+            "expression": "password != cpass"
+          },
+          {
+            "command": "Set",
+            "expression": "Myservices.Existemail({email:^email})",
+            "variableName": "emailexist"
+          },
+          {
+            "command": "Set",
+            "expression": "Myservices.Existnumber({mobileno:^mobileno})",
+            "variableName": "numberexist"
+          },
+          {
+            "children": [
+              {
+                "command": "AlertMessage",
+                "expressionMessage": "\"This email alredy exist\"",
+                "expressionTitle": "\"Exist Email\"",
+                "severity": "warning"
+              },
+              {
+                "command": "Return",
+                "expression": "null"
+              }
+            ],
+            "command": "If",
+            "expression": "emailexist == true"
+          },
+          {
+            "children": [
+              {
+                "command": "AlertMessage",
+                "expressionMessage": "\"This Mobileno  already exist\"",
+                "expressionTitle": "\"Mobileno exist\"",
+                "severity": "warning"
+              },
+              {
+                "command": "Return",
+                "expression": "null"
+              }
+            ],
+            "command": "If",
+            "expression": "numberexist == true"
+          },
+          {
+            "command": "Set",
+            "expression": "Myservices.CreateUser({name:^name,email:^email,mobileno:^mobileno,status:^status,batch:^batch})",
+            "variableName": "myinfo"
+          },
+          {
+            "command": "ConsoleLog",
+            "expression": "myinfo"
+          },
+          {
+            "command": "Set",
+            "expression": "Myservices.CreateTblLogin({ustatus:\"Pending\",uemailid:^email,uunm:^email,upass:^encryptPassword})",
+            "variableName": "myinfo"
+          },
+          {
+            "command": "AlertMessage",
+            "expressionMessage": "\"Registration done successfully\"",
+            "expressionTitle": "\"registration\"",
+            "severity": "information"
+          },
+          {
+            "command": "Navigate",
+            "expressionStartModel": "{}",
+            "uiComponentName": "LoginCmp"
+          }
+        ],
+        "typeReturn": "any",
+        "variables": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "name": "mobileno",
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "name": "batch",
+            "type": "string"
+          },
+          {
+            "name": "combobox1",
+            "type": "integer"
+          },
+          {
+            "name": "myinfo",
+            "type": "any"
+          },
+          {
+            "name": "chkemail",
+            "type": "boolean"
+          },
+          {
+            "name": "emailexist",
+            "type": "boolean"
+          },
+          {
+            "name": "numberexist",
+            "type": "boolean"
+          },
+          {
+            "name": "password",
+            "type": "string"
+          },
+          {
+            "name": "encryptPassword",
+            "type": "string"
+          },
+          {
+            "name": "cpass",
+            "type": "string"
+          }
+        ]
+      },
+      "name": "submit_click"
+    },
+    {
+      "algorithm": {
+        "parameters": [],
+        "statements": [
+          {
+            "command": "Load",
+            "expression": "[[\"Service\",\"Service\"],[\"Retired\",\"Retired\"]]",
+            "widgetName": "combobox1"
+          },
+          {
+            "command": "SetValue",
+            "expression": "\"Service\"",
+            "widgetName": "combobox1"
+          }
+        ],
+        "typeReturn": "any",
+        "variables": []
+      },
+      "name": "main_init"
+    },
+    {
+      "algorithm": {
+        "parameters": [],
+        "statements": [
+          {
+            "command": "Navigate",
+            "expressionStartModel": "{}",
+            "uiComponentName": "LoginCmp"
+          }
+        ],
+        "typeReturn": "any",
+        "variables": []
+      },
+      "name": "signin_click"
+    }
+  ],
+  "model": [
+    {
+      "name": "instance",
+      "required": false,
+      "type": "Myservices.User"
+    }
+  ],
+  "root": {
+    "alignItems": "center",
+    "children": [
+      {
+        "alignItems": "center",
+        "children": [
+          {
+            "align": "center",
+            "bold": true,
+            "color": "primary",
+            "cssClass": "blz-padding-bottom-large",
+            "name": "label1",
+            "size": "large",
+            "text": "Sign Up",
+            "widget": "Label"
+          },
+          {
+            "cssClass": "textbox",
+            "label": "Name",
+            "last": true,
+            "mandatory": true,
+            "name": "name",
+            "size": "third",
+            "widget": "TextBox"
+          },
+          {
+            "cssClass": "textbox",
+            "label": "Email",
+            "last": true,
+            "mandatory": true,
+            "name": "email",
+            "size": "third",
+            "widget": "TextBox"
+          },
+          {
+            "cssClass": "textbox",
+            "label": "Mobile No",
+            "last": true,
+            "mandatory": true,
+            "maxLength": 10,
+            "name": "mobileno",
+            "size": "third",
+            "widget": "TextBox"
+          },
+          {
+            "cssClass": "textbox",
+            "dataFormat": "key-value",
+            "label": "Satus",
+            "last": true,
+            "mandatory": true,
+            "mode": "single",
+            "name": "combobox1",
+            "size": "third",
+            "widget": "ComboBox"
+          },
+          {
+            "cssClass": "textbox",
+            "label": "Batch",
+            "last": true,
+            "mandatory": true,
+            "name": "batch",
+            "size": "third",
+            "widget": "TextBox"
+          },
+          {
+            "cssClass": "textbox",
+            "label": "Password",
+            "last": true,
+            "mandatory": true,
+            "name": "password",
+            "secure": true,
+            "size": "third",
+            "widget": "TextBox"
+          },
+          {
+            "cssClass": "textbox",
+            "label": "Confirm Password",
+            "last": true,
+            "mandatory": true,
+            "name": "cpassword",
+            "secure": true,
+            "size": "third",
+            "widget": "TextBox"
+          },
+          {
+            "align": "center",
+            "clickable": true,
+            "color": "default",
+            "name": "sigin",
+            "size": "small",
+            "text": "Already have an account ?",
+            "widget": "Label"
+          },
+          {
+            "align": "left",
+            "bold": true,
+            "clickable": true,
+            "color": "primary",
+            "dock": "previous",
+            "name": "signin",
+            "size": "small",
+            "text": "Sign In",
+            "underline": true,
+            "widget": "Label"
+          },
+          {
+            "align": "center",
+            "color": "primary",
+            "name": "submit",
+            "submit": true,
+            "text": "Sign Up",
+            "widget": "Button"
+          }
+        ],
+        "cssClass": "blz-padding-top-large blz-padding-right-large blz-padding-left-large blz-padding-bottom-large",
+        "height": 900,
+        "layout": "container",
+        "size": "5/12"
+      }
+    ],
+    "cssClass": "blz-area-default",
+    "layout": "container"
+  },
+  "routing": {
+    "path": "/signup"
+  },
+  "unused": [
+    {
+      "__internalName": "textarea1",
+      "name": "textarea1",
+      "widget": "TextArea"
+    }
+  ]
+}

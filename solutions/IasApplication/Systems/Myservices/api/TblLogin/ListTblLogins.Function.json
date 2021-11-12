@@ -1,0 +1,44 @@
+{
+  "algorithm": {
+    "parameters": [
+      {
+        "name": "args",
+        "type": "ArgsListTblLogins"
+      }
+    ],
+    "statements": [
+      {
+        "command": "Return",
+        "expression": "RdsSelect(Ias.TblLogin, This(), [RdsConditional(id == ^args.id, !IsNull(^args.id))], id, ^args.offset, ^args.limit)"
+      }
+    ],
+    "typeReturn": "list(TblLogin)",
+    "variables": []
+  },
+  "routing": {
+    "method": "GET",
+    "parameters": [
+      {
+        "bind": "args.id",
+        "in": "Query",
+        "name": "id",
+        "remarks": "For filtering."
+      },
+      {
+        "bind": "args.offset",
+        "in": "Query",
+        "name": "offset",
+        "remarks": "Requested index for start the results to be provided in response."
+      },
+      {
+        "bind": "args.limit",
+        "in": "Query",
+        "name": "limit",
+        "remarks": "Requested number results to be provided in response."
+      }
+    ],
+    "path": "/tbl-logins",
+    "remarks": "Allows to get a list of TblLogins.",
+    "responses": []
+  }
+}

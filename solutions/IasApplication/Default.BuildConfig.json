@@ -1,0 +1,47 @@
+{
+  "items": [
+    {
+      "systemName": "IasFrontend",
+      "action": "build",
+      "parameters": [
+        {
+          "configParameterName": "Test",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "systemName": "Ias",
+      "action": "mock",
+      "mockInitialization": {
+        "records": [
+          {
+            "rdsTableName": "TblLogin",
+            "id": "V1",
+            "ustatus": "active",
+            "uemailid": "alex@gmail.com",
+            "uunm": "alex@gmail.com",
+            "upass": "e10adc3949ba59abbe56e057f20f883e"
+          },
+          {
+            "rdsTableName": "TblLogin",
+            "id": "V2",
+            "ustatus": "Admin",
+            "uemailid": "admin@gmail.com",
+            "uunm": "admin",
+            "upass": "e10adc3949ba59abbe56e057f20f883e"
+          },
+          {
+            "rdsTableName": "Users",
+            "id": "U1",
+            "name": "alex",
+            "email": "alex@gmail.com",
+            "mobileno": 1234567890,
+            "status": "inactive",
+            "batch": "2000"
+          }
+        ]
+      }
+    }
+  ]
+}

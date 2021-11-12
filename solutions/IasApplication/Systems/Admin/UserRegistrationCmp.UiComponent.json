@@ -1,0 +1,315 @@
+{
+  "eventsAndFunctions": [
+    {
+      "algorithm": {
+        "parameters": [],
+        "statements": [
+          {
+            "command": "Load",
+            "expression": "[[\"Service\"],[\"Retired\"]]",
+            "widgetName": "combobox1"
+          },
+          {
+            "command": "SetValue",
+            "expression": "\"Service\"",
+            "widgetName": "combobox1"
+          }
+        ],
+        "typeReturn": "any",
+        "variables": []
+      },
+      "name": "main_init"
+    },
+    {
+      "algorithm": {
+        "parameters": [],
+        "statements": [
+          {
+            "command": "GetValue",
+            "variableName": "name",
+            "widgetName": "name"
+          },
+          {
+            "command": "GetValue",
+            "variableName": "email",
+            "widgetName": "email"
+          },
+          {
+            "command": "GetValue",
+            "variableName": "mobileno",
+            "widgetName": "mobile"
+          },
+          {
+            "command": "GetValue",
+            "variableName": "status",
+            "widgetName": "combobox1"
+          },
+          {
+            "command": "GetValue",
+            "variableName": "batch",
+            "widgetName": "batch"
+          },
+          {
+            "command": "GetValue",
+            "variableName": "password",
+            "widgetName": "password"
+          },
+          {
+            "command": "Set",
+            "expression": "Myservices.Existemail({email:^email})",
+            "variableName": "emailexist"
+          },
+          {
+            "command": "Set",
+            "expression": "Myservices.EncryptPassword({upass:^password})",
+            "variableName": "encryptpassword"
+          },
+          {
+            "command": "Set",
+            "expression": "Myservices.Existnumber({mobileno:^mobileno})",
+            "variableName": "numberexist"
+          },
+          {
+            "command": "GetValue",
+            "variableName": "cpass",
+            "widgetName": "cpass"
+          },
+          {
+            "children": [
+              {
+                "command": "AlertMessage",
+                "expressionMessage": "\"This Mobileno  already exist\"",
+                "expressionTitle": "\"Mobileno exist\"",
+                "severity": "warning"
+              },
+              {
+                "command": "Return",
+                "expression": "null"
+              }
+            ],
+            "command": "If",
+            "expression": "numberexist == true"
+          },
+          {
+            "children": [
+              {
+                "command": "AlertMessage",
+                "expressionMessage": "\"This email alredy exist\"",
+                "expressionTitle": "\"Exist Email\"",
+                "severity": "warning"
+              },
+              {
+                "command": "Return",
+                "expression": "null"
+              }
+            ],
+            "command": "If",
+            "expression": "emailexist == true"
+          },
+          {
+            "children": [
+              {
+                "command": "AlertMessage",
+                "expressionMessage": "\"Password and Confirm password not match\"",
+                "expressionTitle": "\"Incorrect Password\"",
+                "severity": "warning"
+              },
+              {
+                "command": "Return",
+                "expression": "null"
+              }
+            ],
+            "command": "If",
+            "expression": "password != cpass"
+          },
+          {
+            "command": "Set",
+            "expression": "Myservices.CreateUser({name:^name,email:^email,mobileno:^mobileno,status:^status,batch:^batch})",
+            "variableName": "myinfo"
+          },
+          {
+            "command": "Set",
+            "expression": "Myservices.CreateTblLogin({ustatus:\"Pending\",uemailid:^email,uunm:^email,upass:^encryptpassword})",
+            "variableName": "myinfo"
+          },
+          {
+            "command": "Navigate",
+            "expressionStartModel": "{}",
+            "uiComponentName": "AlluserCmp"
+          }
+        ],
+        "typeReturn": "any",
+        "variables": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "name": "mobileno",
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "name": "batch",
+            "type": "string"
+          },
+          {
+            "name": "combobox",
+            "type": "string"
+          },
+          {
+            "name": "encryptpassword",
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "type": "string"
+          },
+          {
+            "name": "myinfo",
+            "type": "any"
+          },
+          {
+            "name": "emailexist",
+            "type": "boolean"
+          },
+          {
+            "name": "numberexist",
+            "type": "boolean"
+          },
+          {
+            "name": "cpass",
+            "type": "string"
+          }
+        ]
+      },
+      "name": "submit_click"
+    }
+  ],
+  "model": [
+    {
+      "name": "name",
+      "required": true,
+      "type": "Myservices.User"
+    }
+  ],
+  "root": {
+    "alignItems": "center",
+    "children": [
+      {
+        "name": "grid1",
+        "widget": "Grid"
+      },
+      {
+        "alignItems": "center",
+        "children": [
+          {
+            "align": "center",
+            "bold": true,
+            "color": "primary",
+            "cssClass": "blz-padding-top-large",
+            "name": "label1",
+            "text": "User Registration",
+            "widget": "Label"
+          },
+          {
+            "label": "Name",
+            "mandatory": true,
+            "name": "name",
+            "widget": "TextBox"
+          },
+          {
+            "label": "Email",
+            "mandatory": true,
+            "name": "email",
+            "widget": "TextBox"
+          },
+          {
+            "label": "Mobile No",
+            "mandatory": true,
+            "name": "mobile",
+            "widget": "TextBox"
+          },
+          {
+            "dataFormat": "plain",
+            "label": "Status",
+            "mandatory": true,
+            "mode": "single",
+            "name": "combobox1",
+            "widget": "ComboBox"
+          },
+          {
+            "label": "batch",
+            "mandatory": true,
+            "name": "batch",
+            "widget": "TextBox"
+          },
+          {
+            "label": "Password",
+            "mandatory": true,
+            "name": "password",
+            "widget": "TextBox"
+          },
+          {
+            "label": "cpassword",
+            "mandatory": true,
+            "name": "cpass",
+            "widget": "TextBox"
+          },
+          {
+            "align": "center",
+            "color": "primary",
+            "name": "submit",
+            "text": "Submit",
+            "widget": "Button"
+          }
+        ],
+        "cssClass": "blz-padding-top-large blz-border-top blz-border-right blz-border-left blz-border-bottom blz-border-radius",
+        "height": 600,
+        "layout": "container",
+        "size": "two-third"
+      }
+    ],
+    "cssClass": "blz-area-default",
+    "layout": "container"
+  },
+  "routing": {
+    "path": "/user"
+  },
+  "unused": [
+    {
+      "__internalName": "textarea1",
+      "name": "textarea1",
+      "widget": "TextArea"
+    },
+    {
+      "__internalName": "textbox4",
+      "binding": "instance.status",
+      "name": "textbox4",
+      "widget": "TextBox"
+    },
+    {
+      "__internalName": "mobileno",
+      "binding": "instance.mobileno",
+      "label": "Mobileno",
+      "mandatory": true,
+      "maxLength": 10,
+      "name": "mobileno",
+      "widget": "TextBox"
+    },
+    {
+      "__internalName": "textbox5",
+      "binding": "instance.mobileno",
+      "label": "mobileno",
+      "name": "textbox5",
+      "widget": "TextBox"
+    }
+  ]
+}

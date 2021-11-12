@@ -1,0 +1,130 @@
+{
+  "eventsAndFunctions": [
+    {
+      "algorithm": {
+        "parameters": [],
+        "statements": [
+          {
+            "command": "Navigate",
+            "expressionStartModel": "{}",
+            "uiComponentName": "CmpSignup"
+          }
+        ],
+        "typeReturn": "any",
+        "variables": []
+      },
+      "name": "next_click"
+    },
+    {
+      "algorithm": {
+        "parameters": [],
+        "statements": [
+          {
+            "command": "Navigate",
+            "expressionStartModel": "{}",
+            "uiComponentName": "LoginCmp"
+          }
+        ],
+        "typeReturn": "any",
+        "variables": []
+      },
+      "name": "login_click"
+    },
+    {
+      "algorithm": {
+        "parameters": [],
+        "statements": [],
+        "typeReturn": "any",
+        "variables": []
+      },
+      "name": "main_init"
+    }
+  ],
+  "model": [],
+  "root": {
+    "children": [
+      {
+        "align": "center",
+        "color": "default",
+        "cssClass": "img",
+        "icon": "Iaslogo.svg",
+        "name": "icon2",
+        "size": "large",
+        "widget": "Icon"
+      },
+      {
+        "align": "center",
+        "bold": true,
+        "color": "primary",
+        "cssClass": "blz-padding-top-large blz-padding-bottom-large",
+        "name": "label2",
+        "size": "medium",
+        "text": "Maharashtra IAS Association",
+        "widget": "Label"
+      },
+      {
+        "align": "center",
+        "color": "default",
+        "name": "label3",
+        "size": "medium",
+        "text": "Welcome",
+        "widget": "Label"
+      },
+      {
+        "align": "center",
+        "color": "default",
+        "cssClass": "blz-padding-bottom-large",
+        "name": "label4",
+        "size": "small",
+        "text": "Indian Administrative Service",
+        "widget": "Label"
+      },
+      {
+        "align": "center",
+        "color": "primary",
+        "cssClass": "custom",
+        "name": "login",
+        "size": "medium",
+        "submit": true,
+        "text": "LogIn",
+        "widget": "Button"
+      },
+      {
+        "align": "center",
+        "color": "primary",
+        "cssClass": "custom",
+        "name": "next",
+        "submit": true,
+        "text": "Sign Up",
+        "widget": "Button"
+      }
+    ],
+    "cssClass": "blz-area-info blz-padding-top-large blz-padding-right-large blz-padding-left-large blz-padding-bottom-large",
+    "horizontalSeparation": "large",
+    "layout": "container",
+    "verticalSeparation": "large"
+  },
+  "routing": {
+    "path": "/home"
+  },
+  "unused": [
+    {
+      "__internalName": "grid1",
+      "name": "grid1",
+      "widget": "Grid"
+    },
+    {
+      "__internalName": "label1",
+      "name": "label1",
+      "widget": "Label"
+    },
+    {
+      "__internalName": "icon1",
+      "align": "center",
+      "color": "default",
+      "icon": "three-dots.svg",
+      "name": "icon1",
+      "widget": "Icon"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "algorithm": {
+    "parameters": [
+      {
+        "name": "id",
+        "type": "integer"
+      },
+      {
+        "name": "tblLogin",
+        "type": "TblLogin"
+      }
+    ],
+    "statements": [
+      {
+        "command": "Return",
+        "expression": "RdsUpdate(Ias.TblLogin, ^tblLogin, id == ^id)"
+      }
+    ],
+    "typeReturn": "any",
+    "variables": []
+  },
+  "routing": {
+    "method": "PATCH",
+    "parameters": [
+      {
+        "bind": "id",
+        "in": "Path",
+        "name": "id",
+        "remarks": "Id."
+      },
+      {
+        "bind": "tblLogin",
+        "in": "Body",
+        "name": "body",
+        "remarks": "New TblLogin information to be updated."
+      }
+    ],
+    "path": "/tbl-login/{id}",
+    "remarks": "Allows to update an existing TblLogin.",
+    "responses": []
+  }
+}

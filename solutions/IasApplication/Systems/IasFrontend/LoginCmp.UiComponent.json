@@ -1,0 +1,291 @@
+{
+  "eventsAndFunctions": [
+    {
+      "algorithm": {
+        "parameters": [],
+        "statements": [
+          {
+            "command": "Navigate",
+            "expressionStartModel": "{}",
+            "uiComponentName": "ForgotPasswordCmp"
+          }
+        ],
+        "typeReturn": "any",
+        "variables": []
+      },
+      "name": "otp_click"
+    },
+    {
+      "algorithm": {
+        "parameters": [],
+        "statements": [
+          {
+            "command": "GetValue",
+            "variableName": "uname",
+            "widgetName": "uname"
+          },
+          {
+            "command": "GetValue",
+            "variableName": "pass",
+            "widgetName": "pass"
+          },
+          {
+            "command": "Set",
+            "expression": "Myservices.EncryptPassword({upass:^pass})",
+            "variableName": "encryptPassword"
+          },
+          {
+            "command": "Set",
+            "expression": "Myservices.GetLoginUser({uunm:^uname,upass:^encryptPassword})",
+            "variableName": "loginAuth"
+          },
+          {
+            "command": "ConsoleLog",
+            "expression": "loginAuth.ustatus"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "command": "AlertMessage",
+                    "expressionMessage": "\"username or password incorrect\"",
+                    "expressionTitle": "\"invalid\"",
+                    "severity": "error"
+                  },
+                  {
+                    "command": "Return",
+                    "expression": "null"
+                  }
+                ],
+                "command": "If",
+                "expression": "loginAuth == null"
+              },
+              {
+                "children": [
+                  {
+                    "command": "WriteSessionStorage",
+                    "expression": "uname",
+                    "sessionStorageVariableName": "\"username\""
+                  },
+                  {
+                    "children": [
+                      {
+                        "command": "Navigate",
+                        "expressionStartModel": "{}",
+                        "uiComponentName": "SuccessCmp"
+                      }
+                    ],
+                    "command": "If",
+                    "expression": "loginAuth.ustatus == \"active\""
+                  },
+                  {
+                    "children": [
+                      {
+                        "command": "AlertMessage",
+                        "expressionMessage": "\"Admin not Approved Your status kindly contact them \"",
+                        "expressionTitle": "\"Status\"",
+                        "severity": "error"
+                      }
+                    ],
+                    "command": "Else"
+                  }
+                ],
+                "command": "Else"
+              }
+            ],
+            "command": "If",
+            "expression": "IsNotNull(uname) && IsNotNull(pass)"
+          }
+        ],
+        "typeReturn": "any",
+        "variables": [
+          {
+            "name": "uname",
+            "type": "string"
+          },
+          {
+            "name": "pass",
+            "type": "string"
+          },
+          {
+            "name": "loginAuth",
+            "type": "any"
+          },
+          {
+            "name": "encryptPassword",
+            "type": "string"
+          },
+          {
+            "name": "username",
+            "type": "any"
+          }
+        ]
+      },
+      "name": "button1_click"
+    },
+    {
+      "algorithm": {
+        "parameters": [],
+        "statements": [
+          {
+            "command": "Navigate",
+            "expressionStartModel": "{}",
+            "uiComponentName": "CmpSignup"
+          }
+        ],
+        "typeReturn": "any",
+        "variables": []
+      },
+      "name": "sign_click"
+    },
+    {
+      "algorithm": {
+        "parameters": [],
+        "statements": [],
+        "typeReturn": "any",
+        "variables": []
+      },
+      "name": "main_init"
+    }
+  ],
+  "model": [],
+  "root": {
+    "alignItems": "center",
+    "children": [
+      {
+        "alignItems": "center",
+        "children": [
+          {
+            "align": "center",
+            "attribute": {
+              "bold": true,
+              "clickable": null,
+              "color": "primary",
+              "icon": null,
+              "italic": null,
+              "name": "label1",
+              "securityOption": "",
+              "size": "large",
+              "text": "Login",
+              "underline": null
+            },
+            "bold": true,
+            "color": "primary",
+            "cssClass": "blz-padding-top-large blz-padding-bottom-large",
+            "name": "label1",
+            "size": "large",
+            "text": "Login",
+            "widget": "Label"
+          },
+          {
+            "cssClass": "textbox blz-padding-right-large",
+            "label": "Username",
+            "mandatory": true,
+            "name": "uname",
+            "size": "5/12",
+            "widget": "TextBox"
+          },
+          {
+            "cssClass": "textbox blz-padding-top-large blz-padding-bottom-large",
+            "label": "Password",
+            "last": true,
+            "mandatory": true,
+            "name": "pass",
+            "secure": true,
+            "size": "5/12",
+            "widget": "TextBox"
+          },
+          {
+            "align": "center",
+            "color": "primary",
+            "cssClass": "custom1",
+            "name": "button1",
+            "size": "medium",
+            "submit": true,
+            "text": "Login",
+            "widget": "Button"
+          },
+          {
+            "align": "center",
+            "clickable": true,
+            "color": "secondary",
+            "cssClass": "blz-padding-top-large",
+            "name": "label",
+            "size": "small",
+            "text": "Not a Member ?",
+            "widget": "Label"
+          },
+          {
+            "align": "right",
+            "attribute": {
+              "bold": true,
+              "clickable": true,
+              "color": "primary",
+              "name": "sign",
+              "text": "SignUp now",
+              "underline": true
+            },
+            "bold": true,
+            "clickable": true,
+            "color": "primary",
+            "cssClass": "blz-padding-top-large",
+            "dock": "previous",
+            "name": "sign",
+            "size": "small",
+            "text": "SignUp now",
+            "underline": true,
+            "widget": "Label"
+          },
+          {
+            "align": "center",
+            "color": "default",
+            "name": "otp",
+            "size": "small",
+            "text": "Forgot Password",
+            "widget": "Label"
+          }
+        ],
+        "cssClass": "blz-padding-top-large blz-padding-right-large blz-padding-left-large blz-padding-bottom-large blz-border-left blz-border-radius",
+        "height": 500,
+        "layout": "container",
+        "name": "login",
+        "size": "half"
+      }
+    ],
+    "cssClass": "blz-area-default",
+    "horizontalSeparation": "large",
+    "layout": "container"
+  },
+  "routing": {
+    "path": "/login"
+  },
+  "unused": [
+    {
+      "__internalName": "label2",
+      "align": "center",
+      "name": "label2",
+      "widget": "Label"
+    },
+    {
+      "__internalName": "textbox3",
+      "name": "textbox3",
+      "size": "5/12",
+      "widget": "TextBox"
+    },
+    {
+      "__internalName": "icon1",
+      "align": "center",
+      "color": "default",
+      "icon": "Iaslogo.svg",
+      "name": "icon1",
+      "widget": "Icon"
+    },
+    {
+      "__internalName": "htmlrenderer1",
+      "htmlTemplate": "<div>\n  <h1>\n  <center>hello</center>  \n  </h1>\n</div>",
+      "name": "htmlrenderer1",
+      "widget": "HtmlRenderer"
+    }
+  ]
+}

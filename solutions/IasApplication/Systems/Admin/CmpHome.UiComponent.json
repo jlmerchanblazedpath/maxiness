@@ -1,0 +1,159 @@
+{
+  "eventsAndFunctions": [
+    {
+      "algorithm": {
+        "parameters": [],
+        "statements": [
+          {
+            "command": "GetValue",
+            "variableName": "username",
+            "widgetName": "textbox1"
+          },
+          {
+            "command": "GetValue",
+            "variableName": "password",
+            "widgetName": "password"
+          },
+          {
+            "children": [
+              {
+                "command": "AlertMessage",
+                "expressionMessage": "\"please enter username and password\"",
+                "expressionTitle": "\"empty\"",
+                "severity": "warning"
+              },
+              {
+                "command": "Return",
+                "expression": "null"
+              }
+            ],
+            "command": "If",
+            "expression": "IsNull(username) || IsNull(password)"
+          },
+          {
+            "command": "Set",
+            "expression": "Myservices.EncryptPassword({upass:^password})",
+            "variableName": "encryptPassword"
+          },
+          {
+            "command": "Set",
+            "expression": "Myservices.GetLoginUser({uunm:^username,upass:^encryptPassword})",
+            "variableName": "loginAuth"
+          },
+          {
+            "children": [
+              {
+                "command": "AlertMessage",
+                "expressionMessage": "\"please enter valid username and password\"",
+                "expressionTitle": "\"inavlid\"",
+                "severity": "error"
+              },
+              {
+                "command": "Return",
+                "expression": "null"
+              }
+            ],
+            "command": "If",
+            "expression": "loginAuth == null"
+          },
+          {
+            "children": [
+              {
+                "command": "Navigate",
+                "expressionStartModel": "{}",
+                "uiComponentName": "Dashbord"
+              }
+            ],
+            "command": "Else"
+          }
+        ],
+        "typeReturn": "any",
+        "variables": [
+          {
+            "name": "username",
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "type": "string"
+          },
+          {
+            "name": "loginAuth",
+            "type": "any"
+          },
+          {
+            "name": "encryptPassword",
+            "type": "string"
+          }
+        ]
+      },
+      "name": "loginSubmit_click"
+    }
+  ],
+  "model": [],
+  "root": {
+    "alignItems": "center",
+    "children": [
+      {
+        "alignItems": "center",
+        "children": [
+          {
+            "align": "center",
+            "bold": true,
+            "color": "default",
+            "cssClass": "blz-padding-bottom-large",
+            "name": "label1",
+            "size": "large",
+            "text": "Login",
+            "widget": "Label"
+          },
+          {
+            "label": "username",
+            "last": true,
+            "mandatory": true,
+            "name": "textbox1",
+            "size": "5/12",
+            "widget": "TextBox"
+          },
+          {
+            "label": "Password",
+            "mandatory": true,
+            "name": "password",
+            "secure": true,
+            "size": "5/12",
+            "widget": "TextBox"
+          },
+          {
+            "align": "center",
+            "color": "primary",
+            "name": "loginSubmit",
+            "text": "Login",
+            "widget": "Button"
+          }
+        ],
+        "height": 500,
+        "layout": "container",
+        "size": "two-third"
+      }
+    ],
+    "cssClass": "blz-padding-top-large blz-padding-right-large blz-padding-left-large blz-padding-bottom-large blz-area-main",
+    "horizontalSeparation": "large",
+    "layout": "container",
+    "verticalSeparation": "large"
+  },
+  "routing": {
+    "path": "/home"
+  },
+  "unused": [
+    {
+      "__internalName": "label2",
+      "name": "label2",
+      "widget": "Label"
+    },
+    {
+      "__internalName": "textarea1",
+      "name": "textarea1",
+      "widget": "TextArea"
+    }
+  ]
+}

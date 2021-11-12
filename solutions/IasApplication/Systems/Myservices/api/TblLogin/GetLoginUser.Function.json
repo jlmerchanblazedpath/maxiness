@@ -1,0 +1,46 @@
+{
+  "algorithm": {
+    "parameters": [
+      {
+        "name": "argumentLogin1",
+        "type": "ArgumentLogin"
+      }
+    ],
+    "statements": [
+      {
+        "command": "ConsoleLog",
+        "expression": "JsonStringify(^argumentLogin1)"
+      },
+      {
+        "command": "ConsoleLog",
+        "expression": "JsonStringify(RdsSelectOne(Ias.TblLogin, This(), uemailid == ^argumentLogin1.uunm && upass == ^argumentLogin1.upass))"
+      },
+      {
+        "command": "Return",
+        "expression": "RdsSelectOne(Ias.TblLogin, This(), uemailid == ^argumentLogin1.uunm && upass == ^argumentLogin1.upass)"
+      }
+    ],
+    "typeReturn": "any",
+    "variables": []
+  },
+  "routing": {
+    "method": "GET",
+    "parameters": [
+      {
+        "bind": "argumentLogin1.uunm",
+        "in": "Query",
+        "name": "uunm",
+        "remarks": "username"
+      },
+      {
+        "bind": "argumentLogin1.upass",
+        "in": "Query",
+        "name": "upass",
+        "remarks": "password"
+      }
+    ],
+    "path": "/api/tbllogin",
+    "remarks": "Allows to get a User.",
+    "responses": []
+  }
+}

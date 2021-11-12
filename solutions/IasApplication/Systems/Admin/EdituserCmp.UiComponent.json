@@ -1,0 +1,58 @@
+{
+  "eventsAndFunctions": [],
+  "model": [
+    {
+      "name": "instance",
+      "required": false,
+      "type": "Myservices.User"
+    }
+  ],
+  "root": {
+    "children": [
+      {
+        "binding": "instance.name",
+        "label": "Name",
+        "name": "name",
+        "widget": "Autocomplete"
+      },
+      {
+        "binding": "instance.email",
+        "label": "Email",
+        "name": "email",
+        "widget": "Autocomplete"
+      },
+      {
+        "binding": "instance.mobileno",
+        "label": "Mobileno",
+        "name": "mobileno",
+        "widget": "Autocomplete"
+      },
+      {
+        "binding": "instance.batch",
+        "label": "Batch",
+        "name": "batch",
+        "widget": "Autocomplete"
+      },
+      {
+        "binding": "instance.status",
+        "dataFormat": "plain",
+        "label": "Status",
+        "mode": "single",
+        "name": "status",
+        "widget": "ComboBox"
+      }
+    ],
+    "cssClass": "blz-area-default",
+    "layout": "container"
+  },
+  "routing": {
+    "path": "/edit-user"
+  },
+  "unused": [
+    {
+      "__internalName": "autocomplete5",
+      "name": "autocomplete5",
+      "widget": "Autocomplete"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "eventsAndFunctions": [
+    {
+      "algorithm": {
+        "parameters": [],
+        "statements": [
+          {
+            "command": "ConfirmMessage",
+            "expressionMessage": "\"Do you want to logout?\"",
+            "expressionTitle": "\"Logout\""
+          },
+          {
+            "children": [
+              {
+                "command": "Navigate",
+                "expressionStartModel": "{}",
+                "uiComponentName": "LoginCmp"
+              }
+            ],
+            "command": "OnYes"
+          }
+        ],
+        "typeReturn": "any",
+        "variables": []
+      },
+      "name": "logout_click"
+    }
+  ],
+  "model": [],
+  "root": {
+    "children": [
+      {
+        "align": "center",
+        "attribute": {
+          "bold": true,
+          "color": "info",
+          "name": "label1",
+          "size": "large",
+          "text": "Welcome To IAS App"
+        },
+        "bold": true,
+        "color": "info",
+        "cssClass": "blz-padding-top-large",
+        "name": "label1",
+        "size": "large",
+        "text": "Welcome To IAS App",
+        "widget": "Label"
+      },
+      {
+        "align": "center",
+        "color": "primary",
+        "cssClass": "blz-padding-top-large",
+        "name": "logout",
+        "submit": true,
+        "text": "Log Out",
+        "widget": "Button"
+      }
+    ],
+    "cssClass": "blz-area-default",
+    "layout": "container"
+  },
+  "routing": {
+    "path": "/success"
+  },
+  "unused": []
+}
